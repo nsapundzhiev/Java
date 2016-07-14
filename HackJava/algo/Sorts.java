@@ -12,7 +12,7 @@ public class Sorts {
 
 		for (int i = 0; i < list.length; i++) {
 			int currentNumber = list[i];
-			counts[currentNumber] += 1;
+			++counts[currentNumber];
 		}
 
 		int[] sortedList = new int[list.length];
@@ -27,7 +27,7 @@ public class Sorts {
 				--counts[listIndex];
 				++sortedIndex;
 			} else {
-				listIndex++;
+				++listIndex;
 			}
 		}
 		System.arraycopy(sortedList, 0, list, 0, list.length);
