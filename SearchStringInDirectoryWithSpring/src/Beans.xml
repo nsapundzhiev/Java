@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="path" class="java.nio.file.Paths" factory-method="get">
+        <constructor-arg index="0" value="file:///C:\\Users\\c14729a\\Desktop\\SearchStringInDirectory\\files"/>
+    </bean>
+
+    <bean id="buffer" class="spring.project.Buffer">
+        <property name="queue" ref="linkedBlockingQueue"/>
+        <property name="areProducersDone" value="false"/>
+    </bean>
+
+    <bean id="linkedBlockingQueue" class="java.util.concurrent.LinkedBlockingQueue"/>
+
+    <bean id="map" class="java.util.Map"/>
+
+    <bean id="producer" class="spring.project.Producer" scope="prototype">
+        <constructor-arg index="0" ref="path"/>
+        <property name="buffer" ref="buffer"/>
+        <property name="linesReader" ref="linesReader"/>
+    </bean>
+
+    <bean id="fileVisitor" class="spring.project.FileVisitor">
+        <property name="visitedFiles" ref="map"/>
+    </bean>
+
+    <bean id="linesReader" class="spring.project.LinesReader">
+        <property name="visitor" ref="fileVisitor"/>
+        <property name="buffer" ref="buffer"/>
+    </bean>
+
+    <bean id="productLine" class="spring.project.ProductLine" autowire="byName">
+        <constructor-arg index="0" value="0"/>
+        <constructor-arg index="1" value="0"/>
+        <constructor-arg index="2" value="0"/>
+    </bean>
+
+    <bean id="consumer" class="spring.project.Consumer" scope="prototype">
+        <property name="buffer" ref="buffer"/>
+        <property name="keyword" value="language"/>
+    </bean>
+</beans>
