@@ -17,7 +17,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Config {
 
     private final String KEYWORD = "language";
-    private final String PATH = "C:\\Users\\c14729a\\Desktop\\SearchStringInDirectory\\files";
+    private final String PATH = "C:\\SearchStringInDirectory\\files";
 
     @Bean
     public FileVisitor fileVisitor() {
