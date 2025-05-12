@@ -11,7 +11,6 @@ public class DynamicProgramming {
 	private static BufferedReader br;
 
 	public static long solvingKnapsackProblem(int maxWeight) throws NumberFormatException, IOException {
-
 		/*
 		 * Opening text file and reading every line from it and adding weights
 		 * and values of items in arrays
@@ -50,7 +49,6 @@ public class DynamicProgramming {
 	}
 
 	public static void main(String... args) throws IOException {
-
 		int weight;
 		weight = 25;
 		long result;
